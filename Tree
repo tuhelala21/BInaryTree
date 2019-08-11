@@ -1,0 +1,24 @@
+private static void postOrderNor(Node root){
+	Node cur=root;
+	Node last=null;    //上一次被完整遍历过的树的根节点
+	Stack<Node> stack=new Stack<>();
+	
+	while (!stack.empty()||cur!=null){
+		while(cur!=null){
+			stack.push(cur);
+			cur=cur.left;
+		}
+		Node top=stack.peek();
+		if(top.right==null){
+			System.out.print(top.value);
+			stack.pop();
+			last=top;
+		}else if(top.right==last){
+			System.out.print(top.value);
+			stack.pop();
+			last=top;
+		}else{
+			cur=top.right;
+		}
+	}
+}
